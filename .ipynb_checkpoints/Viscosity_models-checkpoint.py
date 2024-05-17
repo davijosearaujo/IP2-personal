@@ -2,6 +2,15 @@ import numpy as np
 import scipy
 from lmfit import *
 
+def carrega_dados(liquido):
+    
+    dados = pd.read_excel(liquido)
+    dados = dados.sort_values('temp [K]')
+    x = np.array(dados['temp [K]'])
+    y_log = np.array(dados['visc [log10 Pa.s]'])
+
+    return dados, x, y_log
+
 def VFT(T, log_eta_inf, m, Tg):
     "Implementando a equação do modelo VFT"
     
